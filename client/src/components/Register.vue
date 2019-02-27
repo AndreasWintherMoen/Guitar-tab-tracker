@@ -61,7 +61,9 @@ h1{
   width: calc(100% + 2px);
   margin-left: -1px;
   margin-bottom: 30px;
-  font-size: 2.5em;
+  font-size: 2em;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 input{
@@ -90,7 +92,7 @@ button {
 }
 
 input, button {
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
 .error{
