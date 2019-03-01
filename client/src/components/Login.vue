@@ -1,29 +1,24 @@
 <template>
   <div class="registration-box">
-    <h1 class="cyan">Register</h1>
-    <form
-      name="tab-tracker-form"
-      autocomplete="off">
-      <input
-        type="email"
-        name="email"
-        v-model="email"
-        placeholder="Email" />
-      <br>
-      <input
-        type="password"
-        name="password"
-        v-model="password"
-        placeholder="Password"
-        autocomplete="new-password"/>
-      <br>
-      <div class="error" v-html="error" />
-      <button
-        class="cyan interactable"
-        @click="register">
-        Register
-      </button>
-    </form>
+    <h1 class="cyan">Login</h1>
+    <input
+      type="email"
+      name="email"
+      v-model="email"
+      placeholder="Email" />
+    <br>
+    <input
+      type="password"
+      name="password"
+      v-model="password"
+      placeholder="Password" />
+    <br>
+    <div class="error" v-html="error" />
+    <button
+      class="cyan interactable"
+      @click="login">
+      Login
+    </button>
   </div>
 </template>
 
@@ -38,9 +33,9 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async login () {
       try {
-        const response = AuthenticationService.register({
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
