@@ -1,6 +1,5 @@
 <template>
-  <div class="registration-box">
-    <h1 class="cyan">Login</h1>
+  <panel title="Login">
     <input
       type="email"
       name="email"
@@ -19,11 +18,12 @@
       @click="login">
       Login
     </button>
-  </div>
+  </panel>
 </template>
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
+import Panel from '@/components/Panel'
 export default {
   data () {
     return {
@@ -45,19 +45,14 @@ export default {
         this.error = err.response.data.error
       }
     }
+  },
+  components: {
+    Panel
   }
 }
 </script>
 
 <style scoped>
-.registration-box{
-  border: 1px solid #000;
-  width: 30%;
-  margin: 0 auto;
-  padding-bottom: 25px;
-  margin-top: 100px;
-}
-
 h1{
   margin-top: -1px;
   width: calc(100% + 2px);
