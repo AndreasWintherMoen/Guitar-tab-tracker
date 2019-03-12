@@ -1,11 +1,27 @@
 <template>
-  <panel title="Songs">
-    <div v-for="song in songs" v-bind:key="song.title">
-      {{song.title}} -
-      {{song.artist}} -
-      {{song.album}}
-    </div>
-  </panel>
+  <v-layout justify-center>
+      <v-flex xs6>
+        <panel title="Songs">
+          <v-btn
+            slot="action"
+            to="songs/create"
+            class="cyan accent-3"
+            light
+            small
+            absolute
+            right
+            middle
+            fab>
+            <v-icon>add</v-icon>
+          </v-btn>
+          <div v-for="song in songs" v-bind:key="song.id">
+            {{song.title}} -
+            {{song.artist}} -
+            {{song.album}}
+          </div>
+        </panel>
+      </v-flex>
+    </v-layout>
 </template>
 
 <script>
@@ -22,7 +38,7 @@ export default {
   },
   async mounted () {
     // do a request to the backend for all the songs
-    this.songs = await SongsService.getSongs()
+    this.songs = (await SongsService.getSongs()).data
   }
 }
 </script>

@@ -1,9 +1,14 @@
 <template>
   <div class="box">
-    <h1 class="cyan">{{title}}</h1>
+    <v-toolbar flat dense class="cyan" dark>
+      <v-toolbar-title>{{title}}</v-toolbar-title>
+      <slot name="action">
+      </slot>
+    </v-toolbar>
     <slot>
       No slot content defined.
     </slot>
+
   </div>
 </template>
 
@@ -24,5 +29,13 @@ h1{
   font-size: 2em;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.box{
+  border: 1px solid #000;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 25px;
+  margin-top: 100px;
 }
 </style>

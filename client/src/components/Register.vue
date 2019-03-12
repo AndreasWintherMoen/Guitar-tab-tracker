@@ -1,29 +1,33 @@
 <template>
-  <panel title="Register">
-    <form
-      name="tab-tracker-form"
-      autocomplete="off">
-      <input
-        type="email"
-        name="email"
-        v-model="email"
-        placeholder="Email" />
-      <br>
-      <input
-        type="password"
-        name="password"
-        v-model="password"
-        placeholder="Password"
-        autocomplete="new-password"/>
-      <br>
-      <div class="error" v-html="error" />
-      <button
-        class="cyan interactable"
-        @click="register">
-        Register
-      </button>
-    </form>
-  </panel>
+  <v-layout justify-center>
+    <v-flex xs3>
+      <panel title="Register">
+        <form
+          name="tab-tracker-form"
+          autocomplete="off">
+          <input
+            type="email"
+            name="email"
+            v-model="email"
+            placeholder="Email" />
+          <br>
+          <input
+            type="password"
+            name="password"
+            v-model="password"
+            placeholder="Password"
+            autocomplete="new-password"/>
+          <br>
+          <div class="error" v-html="error" />
+          <button
+            class="cyan interactable"
+            @click="register">
+            Register
+          </button>
+        </form>
+      </panel>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>

@@ -1,24 +1,28 @@
 <template>
-  <panel title="Login">
-    <input
-      type="email"
-      name="email"
-      v-model="email"
-      placeholder="Email" />
-    <br>
-    <input
-      type="password"
-      name="password"
-      v-model="password"
-      placeholder="Password" />
-    <br>
-    <div class="error" v-html="error" />
-    <button
-      class="cyan interactable"
-      @click="login">
-      Login
-    </button>
-  </panel>
+  <v-layout justify-center>
+    <v-flex xs3>
+      <panel title="Login">
+        <input
+          type="email"
+          name="email"
+          v-model="email"
+          placeholder="Email" />
+        <br>
+        <input
+          type="password"
+          name="password"
+          v-model="password"
+          placeholder="Password" />
+        <br>
+        <div class="error" v-html="error" />
+        <button
+          class="cyan interactable"
+          @click="login">
+          Login
+        </button>
+      </panel>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
