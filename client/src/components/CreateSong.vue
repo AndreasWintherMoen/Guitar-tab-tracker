@@ -51,16 +51,16 @@
           <v-textarea class="ml-4 mr-5"
             label="Tab"
             required
+            no-resize
             :rules="[required]"
             v-model="song.tab"
-            auto-grow
           ></v-textarea>
           <v-textarea class="ml-4 mr-5"
             label="Lyrics"
             required
+            no-resize
             :rules="[required]"
             v-model="song.lyrics"
-            auto-grow
           ></v-textarea>
           <div class="error" v-if="error"> {{error}}</div>
           <button

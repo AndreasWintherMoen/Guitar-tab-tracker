@@ -5,9 +5,11 @@
       <slot name="action">
       </slot>
     </v-toolbar>
-    <slot>
-      No slot content defined.
-    </slot>
+    <div class="content">
+      <slot>
+        No slot content defined.
+      </slot>
+    </div>
 
   </div>
 </template>
@@ -34,8 +36,11 @@ h1{
 .box{
   border: 1px solid #000;
   width: 100%;
+  height: 100%;
   margin: 0 auto;
-  padding-bottom: 25px;
-  margin-top: 100px;
+}
+
+.content{
+  padding: 15px;
 }
 </style>
