@@ -13,14 +13,37 @@ module.exports = {
       })
     }
   },
+  async show(req, res) {
+    try {
+      const song = await Song.findById(req.params.songId)
+      res.send(song)
+    } catch (err) {
+      res.status(500).send({
+        error: 'An error has occured trying to show the song'
+      })
+    }
+  },
   async post(req, res) {
     try {
       const song = await Song.create(req.body)
       res.send(song)
-      console.log("hello")
     } catch (err) {
       res.status(500).send({
         error: 'An error has occured tring to create the song'
+      })
+    }
+  },
+  async put(req, res) {
+    try {
+      const song = await Song.update(req.body, {
+        where: {
+          id: req.params.songId
+        }
+      })
+      res.send(req.body)
+    } catch (err) {
+      res.status(500).send({
+        error: 'An error has occured tring to update the song'
       })
     }
   }
