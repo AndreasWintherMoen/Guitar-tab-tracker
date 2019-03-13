@@ -2,64 +2,72 @@
   <div>
     <v-layout justify-center>
       <v-flex xs4>
-        <panel title="Song metadata">
-          <input
-            type="text"
-            name="Title"
-            v-model="song.title"
-            placeholder="Title"
-          />
-          <input
-            type="text"
-            name="Artist"
-            v-model="song.artist"
-            placeholder="Artist"
-          />
-          <input
-            type="text"
-            name="Genre"
-            v-model="song.genre"
-            placeholder="Genre"
-          />
-          <input
-            type="text"
-            name="Album"
-            v-model="song.album"
-            placeholder="Album"
-          />
-          <input
-            type="text"
-            name="albumImageUrl"
-            v-model="song.albumImageUrl"
-            placeholder="Album Image URL"
-          />
-          <input
-            type="text"
-            name="YoutubeId"
-            v-model="song.youtubeId"
-            placeholder="Youtube ID"
-          />
-        </panel>
-        <button
-          class="cyan interactable"
-          @click="create">
-          Create Song
-        </button>
+        <panel title="Song Metadata">
+        <v-text-field
+          label="Title"
+          required
+          :rules="[required]"
+          v-model="song.title"
+        ></v-text-field>
+
+        <v-text-field
+          label="Artist"
+          required
+          :rules="[required]"
+          v-model="song.artist"
+        ></v-text-field>
+
+        <v-text-field
+          label="Genre"
+          required
+          :rules="[required]"
+          v-model="song.genre"
+        ></v-text-field>
+
+        <v-text-field
+          label="Album"
+          required
+          :rules="[required]"
+          v-model="song.album"
+        ></v-text-field>
+
+        <v-text-field
+          label="Album Image Url"
+          required
+          :rules="[required]"
+          v-model="song.albumImageUrl"
+        ></v-text-field>
+
+        <v-text-field
+          label="YouTube ID"
+          required
+          :rules="[required]"
+          v-model="song.youtubeId"
+        ></v-text-field>
+      </panel>
       </v-flex>
       <v-flex xs7>
         <panel title="Song Structure" class="ml-4">
           <v-textarea class="ml-4 mr-5"
-            name="tab"
             label="Tab"
+            required
+            :rules="[required]"
             v-model="song.tab"
             auto-grow
           ></v-textarea>
           <v-textarea class="ml-4 mr-5"
-            name="lyrics"
             label="Lyrics"
+            required
+            :rules="[required]"
             v-model="song.lyrics"
             auto-grow
           ></v-textarea>
+          <div class="error" v-if="error"> {{error}}</div>
+          <button
+          class="cyan interactable"
+          @click="create">
+          Create Song
+        </button>
         </panel>
       </v-flex>
     </v-layout>
@@ -70,7 +78,7 @@
 import Panel from '@/components/Panel'
 import SongsService from '@/services/SongsService'
 export default {
-  data  () {
+  data () {
     return {
       song: {
         title: null,
@@ -81,7 +89,9 @@ export default {
         youtubeId: null,
         lyrics: null,
         tab: null
-      }
+      },
+      error: null,
+      required: (value) => !!value || 'Required.'
     }
   },
   components: {
@@ -89,7 +99,14 @@ export default {
   },
   methods: {
     async create () {
-      // call API
+      this.error = null
+      const areAllFieldsFilledIn = Object
+        .keys(this.song)
+        .every(key => !!this.song[key])
+      if (!areAllFieldsFilledIn) {
+        this.error = 'Please fill in all the required fields.'
+        return
+      }
       try {
         await SongsService.post(this.song)
         this.$router.push({
