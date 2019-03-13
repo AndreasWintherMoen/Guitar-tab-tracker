@@ -30,14 +30,6 @@ export default {
   color: #fff;
 }*/
 
-.box{
-  border: 1px solid #000;
-  width: 100%;
-  margin: 0 auto;
-  padding-bottom: 25px;
-  margin-top: 100px;
-}
-
 input {
   width: 90%;
 }
