@@ -1,6 +1,13 @@
 import Api from './Api'
 
 export default {
+  index (search) {
+    return Api().get('songs', {
+      params: {
+        search: search
+      }
+    })
+  },
   getSongs () {
     return Api().get('songs')
   },
